@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont {
+            width: fit-content;
+            /* border: 1px solid blue; */
+            margin: 35px auto;
+        }
+        ul {
+            padding-left: 0px;
+            margin-top: 35pxs;
+            list-style: none;
+            display: flex;
+        }
+        a {
+            padding: 16px;
+            /* background-color: #43ade1; */
+            margin: 3px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+            /* color: white; */
+        }
+        /* a:hover {
+            background: #fa9b0f;
+        } */
+        #myPic {
+            width: fit-content;               
+            margin: auto;
+        }
+    </style>
+    <style id="myStyle"></style>
+</head>
+<body>
+    <h1>Создать меню</h1>
+    <form name="formMenu">
+        <p>
+            Пункты меню: <input type="text" name="elemMenu" value="Главное, О компании, Новости" size="50"> 
+        </p>
+        <p>
+            Цвет текста: <input type="color" name="fcColor" value="#ffffff">
+        </p>
+        <p>
+            Цвет фона: <input type="color" name="bgColor" value="#43ade1">
+        </p>
+        <p>
+            Цвет hover: <input type="color" name="hvColor" value="#fa9b0f">
+        </p>
+        <p>
+            <input type="button" name="but" value="Создать меню" onclick="menu()">
+        </p>
+    </form>
+    <div id="cont">
+        <!-- <ul>
+            <li><a href="#">Пункт меню</a></li>
+            <li><a href="#">Пункт меню</a></li>
+            <li><a href="#">Пункт меню</a></li>
+        </ul> -->
+    </div>
+    <div id="myPic"></div>
+    <script>
+        function menu(){
+            let elemMenu = formMenu.elemMenu.value,
+                fcColor = formMenu.fcColor.value,
+                bgColor = formMenu.bgColor.value,
+                hvColor = formMenu.hvColor.value;
+
+                // console.log(elemMenu,fcColor,bgColor,hvColor);
+                let arrMenu = elemMenu.split(", ");                   //разбивает строку на элементы массива
+                let s1 = "", s2 = "";
+                for (i = 0; i < arrMenu.length; i++) {
+                    s1 += `<li onclick = "myImage(${i+1})"><a href="#">${arrMenu[i]}</a></li>`;
+                }
+                // console.log(s1);
+                    s1 = `<ul>${s1}</ul}`;
+                // console.log(s1);
+                    s2 = `
+                    a {
+                        background: ${bgColor};
+                        color: ${fcColor};
+                    }
+                    a:hover {
+                        background: ${hvColor};
+                    }
+                    `
+                // console.log(s1);
+                cont.innerHTML = s1;
+                formMenu.but.value = "Изменить меню";
+                myStyle.innerHTML = s2;
+        }
+        function myImage(n){
+        myPic.innerHTML = `<img onclick = "myPic.innerHTML = ' '" src = "images/${n}.jpg">`;
+        }
+    </script>
+    
+
+
+</body>
+</html>
